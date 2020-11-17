@@ -1,6 +1,8 @@
 {
     "deno.enable": true,
+    "deno.import_intellisense_autodiscovery": true,
     "deno.import_intellisense_origins": {
         "https://deno.land": true
-    }
+    },
+    "debug.javascript.unmapMissingSources": true
 }

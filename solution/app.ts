@@ -7,5 +7,9 @@ const app = new Application();
 app.use(indexRouter.routes());
 app.use(userRouter.routes());
 
+app.addEventListener("error", err => {
+  console.log(err);
+})
+
 console.log(`Now listening on http://0.0.0.0:3000`);
 await app.listen("0.0.0.0:3000");
