@@ -1,9 +1,9 @@
 import { Router } from "../deps.ts";
 
-const router = new Router();
-
-router.get("/", (ctx) => {
-  ctx.response.body = "Welcome to Oak";
-});
-
-export default router;
+export function use(path: string, router: Router) {
+  
+  router.get(`${path}`, async (ctx) => {
+    ctx.response.body = "Welcome to Oak";
+  });
+  
+}
