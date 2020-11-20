@@ -1,6 +1,6 @@
 import { Handlebars } from "../deps.ts";
 
-const handlebars = new Handlebars({
+const hbs = new Handlebars({
   baseDir: "views",
   extname: ".hbs",
   layoutsDir: "layouts/",
@@ -10,4 +10,4 @@ const handlebars = new Handlebars({
   compilerOptions: undefined,
 })
 
-export default handlebars;
+export default hbs;
