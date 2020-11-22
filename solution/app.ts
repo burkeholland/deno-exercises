@@ -10,15 +10,15 @@ usersRouter.use("/users", router);
 
 // static assets
 router.get("/public/:path+", async (ctx) => {
-    await send(ctx, ctx.params.path || "", {
-        root: Deno.cwd()
-    });
+  await send(ctx, ctx.request.url.pathname, {
+    root: Deno.cwd(),
+  });
 });
 
 app.use(router.routes());
 
-app.addEventListener("error", err => {
-    console.log(err);
+app.addEventListener("error", (err) => {
+  console.log(err);
 });
 
 console.log(`Now listening on http://0.0.0.0:3000`);
