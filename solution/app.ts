@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std/http/server.ts";
-import { serveFile } from "https://deno.land/std@0.77.0/http/file_server.ts";
+import { serveFile } from "https://deno.land/std/http/file_server.ts";
 
 const PORT = 3000;
 const HOSTNAME = "0.0.0.0";
