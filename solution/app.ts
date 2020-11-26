@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std/http/server.ts";
-import { serveFile } from "https://deno.land/std/http/file_server.ts";
 
 import routeParser from "https://dev.jspm.io/route-parser@0.0.5";
 import RouteParser from "https://unpkg.com/@types/route-parser@0.1.3/index.d.ts";
@@ -20,7 +19,6 @@ for await (const req of server) {
   if (match.name) {
     req.respond({ body: `Hello, ${match.first} ${match.last}` });
   } else {
-    const html = await serveFile(req, "404.html");
-    req.respond(html);
+    req.respond({ body: "Please pass a name route." });
   }
 }
