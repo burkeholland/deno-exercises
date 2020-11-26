@@ -17,7 +17,7 @@ const route = new Route("/:name");
 for await (const req of server) {
   const match: any = route.match(req.url);
   if (match.name) {
-    req.respond({ body: `Hello, ${match.first} ${match.last}` });
+    req.respond({ body: `Hello, ${match.name}` });
   } else {
     req.respond({ body: "Please pass a name route." });
   }
