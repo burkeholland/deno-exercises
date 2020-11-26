@@ -13,11 +13,11 @@ const server = serve({ hostname: HOSTNAME, port: PORT });
 
 console.log(`Server is now running on: http://${HOSTNAME}:${PORT}`);
 
-const route = new Route("/:first/:last");
+const route = new Route("/:name");
 
 for await (const req of server) {
   const match: any = route.match(req.url);
-  if (match.first || match.last) {
+  if (match.name) {
     req.respond({ body: `Hello, ${match.first} ${match.last}` });
   } else {
     const html = await serveFile(req, "404.html");
