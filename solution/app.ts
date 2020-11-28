@@ -2,6 +2,9 @@ import { Application, Router, send } from "./deps.ts";
 import * as indexRouter from "./routes/indexRouter.ts";
 import * as usersRouter from "./routes/usersRouter.ts";
 
+const HOST = "0.0.0.0";
+const PORT = Deno.env.get("PORT") || 3000;
+
 const app = new Application();
 const router = new Router();
 
@@ -21,5 +24,5 @@ app.addEventListener("error", (err) => {
   console.log(err);
 });
 
-console.log(`Now listening on http://0.0.0.0:3000`);
-await app.listen("0.0.0.0:3000");
+console.log(`Now listening on http://${HOST}:${PORT}`);
+await app.listen(`${HOST}:${PORT}`);
