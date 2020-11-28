@@ -1,11 +1,28 @@
-// Check the "Solution" folder for the completed code
-import { Application } from "https://deno.land/x/oak/mod.ts";
+import { Application, Router, send } from "./deps.ts";
+import * as indexRouter from "./routes/indexRouter.ts";
+import * as usersRouter from "./routes/usersRouter.ts";
+
+const HOST = "0.0.0.0";
+const PORT = Deno.env.get("PORT") || 3000;
 
 const app = new Application();
+const router = new Router();
 
-app.use((ctx, next) => {
-  ctx.response.body = "Hello World";
+indexRouter.use("/", router);
+usersRouter.use("/users", router);
+
+// static assets
+router.get("/public/:path+", async (ctx) => {
+  await send(ctx, ctx.request.url.pathname, {
+    root: Deno.cwd(),
+  });
 });
 
-console.log(`Now listening on http://0.0.0.0:3000`);
-app.listen("0.0.0.0:3000");
+app.use(router.routes());
+
+app.addEventListener("error", (err) => {
+  console.log(err);
+});
+
+console.log(`Now listening on http://${HOST}:${PORT}`);
+await app.listen(`${HOST}:${PORT}`);
