@@ -1,23 +1,11 @@
-FROM mcr.microsoft.com/vscode/devcontainers/base:debian-10
-
-ENV DENO_INSTALL=/deno
-ENV PORT=8000
-
-RUN mkdir -p /deno \
-    && curl -fsSL https://deno.land/x/install/install.sh | sh \
-    && chown -R vscode /deno
-
-ENV PATH=${DENO_INSTALL}/bin:${PATH} \
-    DENO_DIR=${DENO_INSTALL}/.cache/deno
+FROM hayd/alpine-deno:1.5.4
 
 WORKDIR /app
 
-COPY deps.ts .
-RUN deno cache --unstable deps.ts
+ENV PORT=8000
 
 COPY . .
-RUN deno cache --unstable app.ts
+
+CMD ["deno", "run", "-A", "--unstable", "app.ts"]
 
 EXPOSE ${PORT}
-
-CMD ["deno", "run", "--unstable", "-A", "app.ts"]
