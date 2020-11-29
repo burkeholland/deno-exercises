@@ -8,9 +8,6 @@ const PORT = Deno.env.get("PORT") || 3000;
 const app = new Application();
 const router = new Router();
 
-indexRouter.use("/", router);
-usersRouter.use("/users", router);
-
 // static assets
 router.get("/public/:path+", async (ctx) => {
   await send(ctx, ctx.request.url.pathname, {
@@ -18,7 +15,11 @@ router.get("/public/:path+", async (ctx) => {
   });
 });
 
+indexRouter.use("/", router);
+usersRouter.use("/users", router);
+
 app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.addEventListener("error", (err) => {
   console.log(err);
