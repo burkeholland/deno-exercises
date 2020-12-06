@@ -7,6 +7,7 @@ const server = serve({ hostname: HOSTNAME, port: PORT });
 
 console.log(`Server is now running on: http://${HOSTNAME}:${PORT}`);
 
+// listen for requests
 for await (const req of server) {
   req.respond({
     body: "Hello World",
