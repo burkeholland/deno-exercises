@@ -1,4 +1,4 @@
-const desc = { name: "read" } as const;
+const desc = { name: "read", path: "../" } as const;
 const status = await Deno.permissions.request(desc);
 
 console.log(status);
