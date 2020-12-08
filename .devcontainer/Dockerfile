@@ -1,2 +1,0 @@
-FROM hayd/alpine-deno
-
